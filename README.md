@@ -1,1 +1,1 @@
-# devClub-React-Workshop
+# devClub React Workshop
