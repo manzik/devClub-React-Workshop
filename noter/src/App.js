@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
-  console.log(logo);
+import NotesList from "./NotesList";
+import NoteRenderer from "./NoteRenderer";
+
+import usePersistantState from "./usePersistantState";
+
+function App() 
+{
+  let [notes, setNotes] = usePersistantState([]);
+  let [activeNoteId, setActiveNoteId] = React.useState(null);
+
+  let activeNote = null;
+  if(activeNoteId != null)
+  {
+    activeNote = notes.filter((note) => note.id == activeNoteId)[0];
+  }
+
+  let addNote = (id, name, text) => {
+    setNotes([...notes, { id, name, text }])
+  };
+
+  let selectActiveNoteById = (id) => {
+    setActiveNoteId(id);
+  };
+
+  let setActiveNoteText = (newText) => 
+  {
+    console.log(newText);
+    setNotes(notes.map((note) => 
+    {
+      if(note.id == activeNoteId)
+        return { ...note, text: newText };
+      else
+        return note;
+    }))
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NotesList 
+        notes={notes} addNote={addNote} 
+        selectActiveNoteById={selectActiveNoteById}
+      />
+      <NoteRenderer 
+        activeNote={activeNote}
+        setActiveNoteText={setActiveNoteText}
+      />
     </div>
   );
 }
