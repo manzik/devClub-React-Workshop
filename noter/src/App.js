@@ -47,7 +47,7 @@ function sumOfDigits(num)
   return sum;
 }
 \`\`\``
-}]
+}];
 
 function App() 
 {
