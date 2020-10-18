@@ -3,7 +3,7 @@ import React from "react";
 function usePersistentState(key, initialValue)
 {
     let initialState = JSON.parse(localStorage.getItem(key));
-    let [state, internalSetState] = React.useState(initialState);
+    let [state, internalSetState] = React.useState(initialState || initialValue);
 
     React.useEffect(() => 
     {

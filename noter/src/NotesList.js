@@ -8,7 +8,7 @@ function NotesList({ notes, addNote, selectActiveNoteById, activeNoteId, deleteN
     {
         let noteId = Date.now();
         let noteName = prompt("Please enter a name for your new note.");
-        let noteText = "";
+        let noteText = "## New note";
         
         if(noteName)
             addNote(noteId, noteName, noteText);

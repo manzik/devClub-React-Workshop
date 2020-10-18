@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 
+import fs from "fs"
+
 import NotesList from "./NotesList";
 import NoteRenderer from "./NoteRenderer";
 
@@ -11,37 +13,38 @@ let initialNotes = [{
   name: "Mount Kailas",
   text: `## Noter
 
-  ![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
-  
-  <small>The best note-taking app ever. End of story.</small>
+![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
+<small>Image from Unsplash</small>
+
+The best note-taking app, probably ever.
+
+___
 
 ## Features
 
 1. Markdown note-taking
- - Faster and more classy notes with markdown
+ - Easier and more classy notes with markdown
 2. Add and delete notes
  - You can add as many notes as you want
 1. Persistent storage
- - You won't lose your notes. Not under my watch
+ - You won't lose your notes, not under my watch
 1. Being the **best** note-taking app ever
  - I don't _need_ to explain myself
 
-Here's some random React code for no particular reason:
+Here's a random Javascript code for no particular reason:
 \`\`\`javascript
-import React, { useState } from 'react';
+function sumOfDigits(num)
+{
+  let sum = 0;
 
-function Example() {
-  // Declare a new state variable, which we'll call "count"
-  const [count, setCount] = useState(0);
+  num = Math.abs(num);
+  while(num != 0)
+  {
+    sum += num % 10; // Add last digit to the sum
+    num = Math.floor(num / 10); // Remove the last digit
+  }
 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
+  return sum;
 }
 \`\`\``
 }]
@@ -49,7 +52,6 @@ function Example() {
 function App() 
 {
   let [notes, setNotes] = usePersistantState("notes", initialNotes);
-  console.log(notes);
   let [activeNoteId, setActiveNoteId] = React.useState(notes[0] ? notes[0].id : null);
 
   let activeNote = null;
