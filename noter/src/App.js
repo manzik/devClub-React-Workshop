@@ -10,7 +10,7 @@ import usePersistantState from "./usePersistentState";
 
 let initialNotes = [{
   id: Date.now(),
-  name: "Introducing Noter",
+  name: "Noter Introduction",
   text: `## Noter
 
 ![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
