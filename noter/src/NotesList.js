@@ -10,11 +10,12 @@ function NotesList({ notes, addNote, selectActiveNoteById, activeNoteId, deleteN
         let noteName = prompt("Please enter a name for your new note.");
         let noteText = "";
         
-        addNote(noteId, noteName, noteText);
+        if(noteName)
+            addNote(noteId, noteName, noteText);
     };
 
     return <div className="notes-list">
-        <div className="note-item header-item">Files</div>
+        <div className="note-item header-item">Notes</div>
         <hr/>
         {
             notes.map((note) => 

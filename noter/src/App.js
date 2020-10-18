@@ -4,23 +4,53 @@ import "./App.css";
 import NotesList from "./NotesList";
 import NoteRenderer from "./NoteRenderer";
 
-import usePersistantState from "./usePersistantState";
+import usePersistantState from "./usePersistentState";
 
 let initialNotes = [{
   id: Date.now(),
   name: "Mount Kailas",
-  text: `## Mount Kailas
+  text: `## Noter
 
-  ![s](https://cdn.dribbble.com/users/989466/screenshots/14205792/september-landscape-2020-v4-dribbble-alex-pasquarella_4x.png)
+  ![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
   
-  <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus dui fringilla mollis malesuada. Praesent dui sapien, malesuada ac dui dictum, posuere commodo ipsum. Morbi quis sapien at erat porta ullamcorper nec eget ipsum. Etiam at arcu quis mauris molestie vulputate quis non tellus. Nam velit tortor, sollicitudin eget metus et, rutrum imperdiet elit. Vestibulum porta nisl quis augue porttitor molestie. Aenean laoreet molestie lorem tincidunt cursus.
-  </small>`
+  <small>The best note-taking app ever. End of story.</small>
+
+## Features
+
+1. Markdown note-taking
+ - Faster and more classy notes with markdown
+2. Add and delete notes
+ - You can add as many notes as you want
+1. Persistent storage
+ - You won't lose your notes. Not under my watch
+1. Being the **best** note-taking app ever
+ - I don't _need_ to explain myself
+
+Here's some random React code for no particular reason:
+\`\`\`javascript
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+\`\`\``
 }]
 
 function App() 
 {
-  let [notes, setNotes] = usePersistantState("notes", []);
-  let [activeNoteId, setActiveNoteId] = React.useState(initialNotes);
+  let [notes, setNotes] = usePersistantState("notes", initialNotes);
+  console.log(notes);
+  let [activeNoteId, setActiveNoteId] = React.useState(notes[0] ? notes[0].id : null);
 
   let activeNote = null;
   if(activeNoteId != null)
@@ -70,7 +100,7 @@ function App()
             setActiveNoteText={setActiveNoteText}
           />
           :
-          <span className="no-file-selected">Please create a new file or select one</span>
+          <span className="no-file-selected">Please create a new note or select one</span>
         }
       </div>
     </div>

@@ -9,10 +9,11 @@ function NoteRenderer({ activeNote, setActiveNoteText })
 
     return <>
         <div className="note-raw-md">
-            <textarea 
+            <textarea
                 onChange={() => setActiveNoteText(mdTextAreaRef.current.value)}
                 ref={mdTextAreaRef}
                 value={activeNote.text}
+                spellCheck={false}
             ></textarea>
         </div>
         <div className="note-rendered-md">
