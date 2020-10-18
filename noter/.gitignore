@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+# we would want a preview on github pages so won't ignore /build
+# /build
 
 # misc
 .DS_Store
