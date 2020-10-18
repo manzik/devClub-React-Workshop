@@ -1,7 +1,7 @@
 import React from "react";
 
 // Render notes, and give user the option to add a note
-function NotesList({ notes, addNote, selectActiveNoteById }) 
+function NotesList({ notes, addNote, selectActiveNoteById, activeNoteId, deleteNoteById }) 
 {
 
     let onAddNewNote = () => 
@@ -14,14 +14,20 @@ function NotesList({ notes, addNote, selectActiveNoteById })
     };
 
     return <div className="notes-list">
+        <div className="note-item header-item">Files</div>
+        <hr/>
         {
-            notes.map((note, ind) => 
+            notes.map((note) => 
             {
                 return <div 
                     className="note-item" key={note.id}
                     onClick={() => selectActiveNoteById(note.id)}
                 >
-                    {note.name}
+                    <span className="note-name">
+                        {note.id == activeNoteId ? <span style={{ color: "#2EA7FF" }}>&gt; </span> : ""}
+                        {note.name}
+                    </span>
+                    <span className="note-delete" onClick={() => deleteNoteById(note.id)}>x</span>
                 </div>;
             })
         }
