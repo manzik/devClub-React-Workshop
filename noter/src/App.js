@@ -31,7 +31,7 @@ ___
 1. Being the **best** note-taking app ever
  - I don't _need_ to explain myself
 
- ## Usage
+## Usage
 
 - Use the "+" button on the left sidebar to add a new note
 - Start typing markdown code into the left panel. You can see the results on the right panel
