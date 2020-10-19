@@ -88,6 +88,7 @@
 
 .note-body-container > .note-raw-md
 {
+  width: 50%;
   position: relative;
   height: 100%;
 }
@@ -102,7 +103,7 @@
   color: white;
   outline: none;
   border: none;
-  resize: horizontal;
+  resize: none;
 }
 
 .note-body-container > .note-rendered-md

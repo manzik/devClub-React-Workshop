@@ -13,7 +13,7 @@ let initialNotes = [{
   name: "Noter Introduction",
   text: `## Noter
 
-![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
+![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)  
 <small>Image from Unsplash</small>
 
 The best note-taking app, probably ever.
