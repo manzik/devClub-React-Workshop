@@ -31,6 +31,13 @@ ___
 1. Being the **best** note-taking app ever
  - I don't _need_ to explain myself
 
+ ## Usage
+
+- Use the "+" button on the left sidebar to add a new note
+- Start typing markdown code into the left panel. You can see the results on the right panel
+- You can delete notes by hovering on a note on the left sidebar and clicking the "x" button
+___
+
 Here's a random Javascript code for no particular reason:
 \`\`\`javascript
 function sumOfDigits(num)
