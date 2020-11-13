@@ -6,9 +6,8 @@ import NotesList from './NotesList';
 import NoteRenderer from "./NoteRenderer";
 import usePersistentState from "./usePersistentState";
 
-let defaultNoteID = 0;
 let defaultNote = {
-  id: defaultNoteID,
+  id: 0,
   name: "Introduction",
   text: `## Noter
 
@@ -51,7 +50,7 @@ function sumOfDigits(num)
 function App() 
 {
   const [notes, setNotes] = usePersistentState([defaultNote], "notes");
-  const [selectedNoteID, setSelectedNoteID] = React.useState(defaultNoteID);
+  const [selectedNoteID, setSelectedNoteID] = React.useState(notes.length > 0 ? notes[0].id : null);
 
   let selectedNote = null;
 

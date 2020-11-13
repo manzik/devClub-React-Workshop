@@ -1,18 +1,39 @@
 import React from "react";
 
+const isElectron = window && window.process && window.process.type;
+
 function NotesList({ notes, addNote, selectedNoteID, setSelectedNoteID, deleteNoteByID })
 {
     const askAddNote = () => 
     {
-        let noteName = prompt("Please enter a name for your new note");
-
-        if(noteName)
+        if(!isElectron)
         {
-            let noteID = Date.now();
-            let noteText = "## New note";
+            let noteName = prompt("Please enter a name for your new note");
 
-            addNote(noteID, noteName, noteText);
+            if(noteName)
+            {
+                let noteID = Date.now();
+                let noteText = "## New note";
+
+                addNote(noteID, noteName, noteText);
+            }
         }
+        else
+        {
+            const smalltalk = require('smalltalk');
+            smalltalk
+            .prompt("Question", "Please enter a name for your new note", "")
+            .then((noteName) => {
+                let noteID = Date.now();
+                let noteText = "## New note";
+
+                addNote(noteID, noteName, noteText);
+            })
+            .catch(() => {
+                console.log("cancel");
+            });
+        }
+        
     };
 
     return <div className="notes-list">
