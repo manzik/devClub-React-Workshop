@@ -12,7 +12,7 @@ marked.setOptions({
       const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
       return hljs.highlight(validLanguage, code).value;
     }
-  });
+});
 // END: Markdown code highlighter
 
 function NoteRenderer({ selectedNote, setSelectedNoteText })

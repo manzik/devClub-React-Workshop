@@ -53,13 +53,11 @@ function App()
   const [notes, setNotes] = usePersistentState([defaultNote], "notes");
   const [selectedNoteID, setSelectedNoteID] = React.useState(defaultNoteID);
 
-  console.log(notes);
-
   let selectedNote = null;
 
-  const getNoteByID = (id) => 
+  const getNoteByID = id => 
   {
-    const note = notes.filter((note) => 
+    const note = notes.filter(note => 
     {
       return note.id == selectedNoteID;
     })[0];
@@ -74,13 +72,10 @@ function App()
   
   const setSelectedNoteText = (text) => 
   {
-    setNotes(prevNotes => 
-    {
-      return prevNotes.map((note) => 
-      {
-        return note.id == selectedNoteID ? { ...note, text } : note;
-      });
-    });
+    setNotes(prevNotes => prevNotes.map((note) => 
+        (note.id == selectedNoteID ? { ...note, text } : note)
+      )
+    );
   };
 
   const addNote = (id, name, text) =>
@@ -91,13 +86,7 @@ function App()
 
   const deleteNoteByID = (id) => 
   {
-    setNotes(prevNotes => 
-    {
-      return prevNotes.filter((note) => 
-      {
-        return note.id !== id;
-      });
-    });
+    setNotes(prevNotes => prevNotes.filter(note => note.id !== id));
   };
 
   return (
