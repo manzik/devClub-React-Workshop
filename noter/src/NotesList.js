@@ -9,7 +9,7 @@ function NotesList({ notes, addNote, selectedNoteID, setSelectedNoteID, deleteNo
         if(noteName)
         {
             let noteID = Date.now();
-            let noteText = "";
+            let noteText = "## New note";
 
             addNote(noteID, noteName, noteText);
         }
