@@ -1,19 +1,5 @@
 import React from "react";
-import marked from "marked";
-import ReactHtmlParser from "react-html-parser";
-
-// https://marked.js.org/using_advanced
-// START: Markdown code highlighter
-import 'highlight.js/styles/github.css';
-marked.setOptions({
-    renderer: new marked.Renderer(),
-    highlight: function(code, language) {
-      const hljs = require('highlight.js');
-      const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
-      return hljs.highlight(validLanguage, code).value;
-    }
-});
-// END: Markdown code highlighter
+import ReactMarkdown from 'react-markdown'
 
 function NoteRenderer({ selectedNote, setSelectedNoteText })
 {
@@ -27,7 +13,7 @@ function NoteRenderer({ selectedNote, setSelectedNoteText })
         </div>
         <div className="note-rendered-md">
             {
-                ReactHtmlParser(marked(selectedNote.text))
+                <ReactMarkdown>{selectedNote.text}</ReactMarkdown>
             }
         </div>
     </>;

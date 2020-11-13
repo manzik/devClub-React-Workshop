@@ -13,7 +13,7 @@ let defaultNote = {
   text: `## Noter
 
 ![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
-<small>Image from Unsplash</small>
+Image from Unsplash
 
 The best note-taking app, probably ever.
 
@@ -22,13 +22,13 @@ ___
 ## Features
 
 1. Markdown note-taking
-  - Easier and more classy notes with markdown
+   - Easier and more classy notes with markdown
 2. Add and delete notes
-  - You can add as many notes as you want
+   - You can add as many notes as you want
 3. Persistent storage
-  - You won't lose your notes, not under my watch
+   - You won't lose your notes, not under my watch
 4. Being the **best** note-taking app ever
-  - I don't _need_ to explain myself
+   - I don't _need_ to explain myself
 
 Here's a random Javascript code for no particular reason:
 \`\`\`javascript
