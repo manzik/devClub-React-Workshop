@@ -1,38 +1,32 @@
 import React from "react";
 
-// Render notes, and give user the option to add a note
-function NotesList({ notes, addNote, selectActiveNoteById, activeNoteId, deleteNoteById }) 
+function NotesList({ notes, addNote, selectedNoteID, setSelectedNoteID, deleteNoteByID })
 {
+    const askAddNote = () => {
+        let noteName = prompt("Please enter a name for your new note");
+        let noteID = Date.now();
+        let noteText = "";
 
-    let onAddNewNote = () => 
-    {
-        let noteId = Date.now();
-        let noteName = prompt("Please enter a name for your new note.");
-        let noteText = "## New note";
-        
-        if(noteName)
-            addNote(noteId, noteName, noteText);
-    };
+        addNote(noteID, noteName, noteText);
+    }
 
     return <div className="notes-list">
-        <div className="note-item header-item">Notes</div>
+        <div className="header-item">Notes</div>
         <hr/>
         {
-            notes.map((note) => 
+            notes.map(note => 
             {
-                return <div 
-                    className="note-item" key={note.id}
-                    onClick={() => selectActiveNoteById(note.id)}
-                >
-                    <span className="note-name">
-                        {note.id == activeNoteId ? <span style={{ color: "#2EA7FF" }}>&gt; </span> : ""}
+                return <div className="note-item" onClick={() => setSelectedNoteID(note.id)}>
+                    
+                    <div className="note-name">
+                        { note.id == selectedNoteID ? <span>&gt; </span> : "" }
                         {note.name}
-                    </span>
-                    <span className="note-delete" onClick={() => deleteNoteById(note.id)}>x</span>
+                    </div>
+                    <div className="note-delete" onClick={() => deleteNoteByID(note.id)}>x</div>
                 </div>;
             })
         }
-        <div className="note-item add-note" onClick={onAddNewNote}> + </div>
+        <div className="add-note" onClick={askAddNote}> + </div>
     </div>;
 }
 

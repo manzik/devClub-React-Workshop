@@ -1,24 +1,24 @@
 import React from "react";
 
-function usePersistentState(key, initialValue)
+function usePersistentState(defaultState, key)
 {
-    let initialState = JSON.parse(localStorage.getItem(key));
-    let [state, internalSetState] = React.useState(initialState || initialValue);
+    let [state, setState] = React.useState(defaultState);
 
     React.useEffect(() => 
     {
-        let localStorageValue = localStorage.getItem(key);
-        let hasLocalStorageValue = localStorageValue !== null;
-        if(!hasLocalStorageValue)
-            localStorage.setItem(key, JSON.stringify(initialValue));
+        let storedVal = localStorage.getItem(key);
+        if(storedVal)
+        {
+            setState(JSON.parse(storedVal));
+        }
     }, []);
 
-    let externalSetState = (newState) => {
-        localStorage.setItem(key, JSON.stringify(newState));
-        internalSetState(newState);
-    };
+    React.useEffect(() => 
+    {
+        localStorage.setItem(key, JSON.stringify(state));
+    }, [state]);
 
-    return [state, externalSetState];
+    return [state, setState];
 }
 
 export default usePersistentState;

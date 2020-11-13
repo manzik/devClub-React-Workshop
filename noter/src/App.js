@@ -1,42 +1,34 @@
 import React from "react";
-import "./App.css";
 
-import fs from "fs"
+import './App.css';
 
-import NotesList from "./NotesList";
+import NotesList from './NotesList';
 import NoteRenderer from "./NoteRenderer";
+import usePersistentState from "./usePersistentState";
 
-import usePersistantState from "./usePersistentState";
-
-let initialNotes = [{
-  id: Date.now(),
-  name: "Noter Introduction",
+let defaultNoteID = 0;
+let defaultNote = {
+  id: defaultNoteID,
+  name: "Introduction",
   text: `## Noter
 
-![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)    
+![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)
 <small>Image from Unsplash</small>
 
-The best note-taking app ever.
+The best note-taking app, probably ever.
 
 ___
 
 ## Features
 
 1. Markdown note-taking
- - Easier and more classy notes with markdown
+  - Easier and more classy notes with markdown
 2. Add and delete notes
- - You can add as many notes as you want
-1. Persistent storage
- - You won't lose your notes, not under my watch
-1. Being the **best** note-taking app ever
- - I don't _need_ to explain myself
-
-## Usage
-
-- Use the "+" button on the left sidebar to add a new note
-- Start typing markdown code into the left panel. You can see the results on the right panel
-- You can delete notes by hovering on a note on the left sidebar and clicking the "x" button
-___
+  - You can add as many notes as you want
+3. Persistent storage
+  - You won't lose your notes, not under my watch
+4. Being the **best** note-taking app ever
+  - I don't _need_ to explain myself
 
 Here's a random Javascript code for no particular reason:
 \`\`\`javascript
@@ -54,62 +46,80 @@ function sumOfDigits(num)
   return sum;
 }
 \`\`\``
-}];
+};
 
 function App() 
 {
-  let [notes, setNotes] = usePersistantState("notes", initialNotes);
-  let [activeNoteId, setActiveNoteId] = React.useState(notes[0] && notes[0].id);
+  const [notes, setNotes] = usePersistentState([defaultNote], "notes");
+  const [selectedNoteID, setSelectedNoteID] = React.useState(defaultNoteID);
 
-  let activeNote = null;
-  if(activeNoteId != null)
-  {
-    activeNote = notes.filter((note) => note.id == activeNoteId)[0];
-  }
+  console.log(notes);
 
-  let addNote = (id, name, text) => 
-  {
-    setNotes([...notes, { id, name, text }])
-  };
+  let selectedNote = null;
 
-  let selectActiveNoteById = (id) => 
+  const getNoteByID = (id) => 
   {
-    setActiveNoteId(id);
-  };
-  let deleteNoteById = (id) => 
-  {
-    setNotes(notes.filter(note => note.id != id));
-  };
-
-  let setActiveNoteText = (newText) => 
-  {
-    setNotes(notes.map((note) => 
+    const note = notes.filter((note) => 
     {
-      if(note.id == activeNoteId)
-        return { ...note, text: newText };
-      else
-        return note;
-    }));
+      return note.id == selectedNoteID;
+    })[0];
+
+    return note;
+  };
+  
+  if(selectedNoteID !== null)
+  {
+    selectedNote = getNoteByID(selectedNoteID);
+  }
+  
+  const setSelectedNoteText = (text) => 
+  {
+    setNotes(prevNotes => 
+    {
+      return prevNotes.map((note) => 
+      {
+        return note.id == selectedNoteID ? { ...note, text } : note;
+      });
+    });
+  };
+
+  const addNote = (id, name, text) =>
+  {
+    let newNote = {id, name, text};
+    setNotes(prevNotes => [...prevNotes, newNote]);
+  };
+
+  const deleteNoteByID = (id) => 
+  {
+    setNotes(prevNotes => 
+    {
+      return prevNotes.filter((note) => 
+      {
+        return note.id !== id;
+      });
+    });
   };
 
   return (
     <div className="App">
       <NotesList 
-        notes={notes} addNote={addNote} 
-        activeNoteId={activeNoteId}
-        selectActiveNoteById={selectActiveNoteById}
-        deleteNoteById={deleteNoteById}
-      />
+        notes={notes} 
+        addNote={addNote}
+        setSelectedNoteID={setSelectedNoteID}
+        selectedNoteID={selectedNoteID}
+        deleteNoteByID={deleteNoteByID}
+      >
+
+      </NotesList>
       <div className="note-body-container">
         {
-          activeNote
+          !selectedNote
           ?
-          <NoteRenderer 
-            activeNote={activeNote}
-            setActiveNoteText={setActiveNoteText}
-          />
+          <span className="no-file-selected">Please create or select a note</span>
           :
-          <span className="no-file-selected">Please create a new note or select one</span>
+          <NoteRenderer selectedNote={selectedNote} setSelectedNoteText={setSelectedNoteText}>
+
+          </NoteRenderer>
         }
       </div>
     </div>
