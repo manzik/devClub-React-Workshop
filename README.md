@@ -4,10 +4,6 @@ The project's source code is located in the "noter" folder.
 
 You can access sample codes used in the presentation in the "examples" folder.
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the directory called "notes", you can run:
