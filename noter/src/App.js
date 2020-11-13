@@ -16,7 +16,7 @@ let initialNotes = [{
 ![notebook](https://cdn.dribbble.com/users/119233/screenshots/7022501/media/fa17c4799bdbccb6dbbf7e313a678a62.jpg)    
 <small>Image from Unsplash</small>
 
-The best note-taking app, probably ever.
+The best note-taking app ever.
 
 ___
 
@@ -59,7 +59,7 @@ function sumOfDigits(num)
 function App() 
 {
   let [notes, setNotes] = usePersistantState("notes", initialNotes);
-  let [activeNoteId, setActiveNoteId] = React.useState(notes[0] ? notes[0].id : null);
+  let [activeNoteId, setActiveNoteId] = React.useState(notes[0] && notes[0].id);
 
   let activeNote = null;
   if(activeNoteId != null)
