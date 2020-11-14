@@ -58,6 +58,22 @@ div.notes-list
   justify-content: space-between;
 }
 
+.notes-list > .note-item.selected::before
+{
+  content: ">";
+  color: #2EA7FF;
+  position: absolute;
+  left: 10px;
+  width: 10px;
+  height: 25px;
+}
+
+.notes-list > .note-item.selected
+{
+  position: relative;
+  padding-left: 25px;
+}
+
 .notes-list > .note-item > .note-delete
 {
   transition: 0.4s;
@@ -74,11 +90,6 @@ div.notes-list
 {
   color: #c0c3c7;
   font-family: "Calibri" sans-serif;
-}
-
-.notes-list > .note-item > .note-name > span
-{
-  color: #2EA7FF;
 }
 
 .notes-list > hr

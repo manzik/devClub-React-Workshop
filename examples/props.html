@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Say(props)
+      {
+        return <h2>The {props.type} says {props.says}</h2>;
+      }
+
+      function DogSays(props)
+      {
+        return <Say type="dog" says="woof" />;
+      }
+
+      function DogSaysRepeat(props)
+      {
+        let { repeatCount } = props;
+        let arr = [];
+        
+        for(let i = 0; i < repeatCount; i++)
+        {
+          arr.push(<DogSays />);
+        }
+        
+        return arr;
+      }
+
+      function MainView()
+      {
+        return (
+          <div>
+            <DogSaysRepeat repeatCount={3} />
+          </div>
+        );
+      }
+
+      /*
+      MainView() returns:
+      <div>
+        <h2>The dog says woof</h2>
+        <h2>The dog says woof</h2>
+        <h2>The dog says woof</h2>
+      </div>
+      */
+      
+      ReactDOM.render(
+        <MainView />,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>
