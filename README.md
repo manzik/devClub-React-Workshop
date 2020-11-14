@@ -1,6 +1,8 @@
 # devClub React Workshop
 
-The project's source code is located in the "noter" folder.  
+The project's source code is located in the "noter" folder.
+
+You can view the final output here: [https://github.manzik.com/devClub-React-Workshop/noter/build/](https://github.manzik.com/devClub-React-Workshop/noter/build/)
 
 You can access sample codes used in the presentation in the "examples" folder.
 
