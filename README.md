@@ -31,6 +31,6 @@ Your app is ready to be deployed!
 At the current project's root folder run these commands to build a standalone application from this project.
 
 ```bash
-npm install -g electron-packager
+npm install electron-packager -g
 electron-packager noter Noter
 ```
