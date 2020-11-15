@@ -42,7 +42,7 @@ function NotesList({ notes, addNote, selectedNoteID, setSelectedNoteID, deleteNo
         {
             notes.map(note => 
             {
-                return <div className={`note-item ${note.id == selectedNoteID ? "selected" : ""}`} onClick={() => setSelectedNoteID(note.id)}>
+                return <div className={`note-item ${note.id == selectedNoteID ? "selected" : ""}`} onClick={() => setSelectedNoteID(note.id)} key={note.id}>
                     <div className="note-name">
                         { note.name }
                     </div>

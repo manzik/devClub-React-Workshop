@@ -1,4 +1,4 @@
-# devClub React Workshop
+# devClub React Workshop (November 14th, 2020)
 
 The project's source code is located in the "noter" folder.
 
