@@ -6,6 +6,8 @@ You can view the final output here: [https://github.manzik.com/devClub-React-Wor
 
 You can access sample codes used in the presentation in the "examples" folder.
 
+You can access the slides here as well: [https://docs.google.com/presentation/d/1YeVSsmnjO6deuRT0VDOqaEF0AVSxtBJ8y9Ynm-vSNDM/edit#slide=id.p](https://docs.google.com/presentation/d/1YeVSsmnjO6deuRT0VDOqaEF0AVSxtBJ8y9Ynm-vSNDM/edit#slide=id.p)
+
 ## Available Scripts
 
 In the directory called "notes", you can run:
